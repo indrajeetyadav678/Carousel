@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slider</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #mainbox {
+      width: 100%;
+      height: 89vh;
+      /* border: 7px solid black; */
+      overflow: hidden;
+    }
+
+    #slider {
+      width: 500%;
+      display: flex;
+      justify-content: space-around;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #img1 {
+       width: 100%;
+      /* flex-shrink: 0; */
+    }
+
+    #prev_btn {
+      font-size: 50px;
+      font-weight: bolder;
+      position: absolute;
+      top: 50vh;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      text-align: center;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    #next_btn {
+      font-size: 50px;
+      font-weight: bolder;
+      position: absolute;
+      top: 50vh;
+      right: 15px;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      text-align: center;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    #dotbox {
+      width: 150px;
+      height: 30px;
+      position: absolute;
+      top: 80vh;
+      left: 42%;
+    }
+
+    #dot {
+      /* width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 1px solid white;
+      margin-left: 10px; */
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+
+    }
+    .dot_box{
+      display: flex;
+      position: absolute;
+      top:80vh;
+    }
+    .dot{
+      width: 15px;
+      height: 15px;
+      border: 1px solid rgb(146, 143, 143);
+      border-radius: 50%;
+      margin-left: 8px;
+      /* background-color: transparent; */
+      /* background-color: rgb(113, 110, 110); */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mainbox">
+    <div id="slider">
+      <img src="https://wowslider.com/sliders/demo-18/data1/images/hongkong1081704.jpg" alt="" id="img1">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS86DtPIFwaliepirCfROtW4n4-RyT4SvOxaYN_XEQ_6A&s"
+        alt="" id="img1">
+      <img src="https://wowslider.com/sliders/demo-18/data1/images/shanghai.jpg" alt="" id="img1">
+      <img src="https://cssslider.com/sliders/demo-17/data1/images/picjumbo.com_hanv9909.jpg" alt="" id="img1">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRijRfI7-FCH4DorB8Y2W0bjsOwtZUzcfIjaH_mV0zM0g&s"
+        alt="" id="img1">
+    </div>
+    <div id="prev_btn" onclick="previous()">
+      <</div>
+    <div id="next_btn" onclick="next()">></div>
+    
+  </div>
+  <div class="dot_box">
+<div class="dot" onclick="slidedot(1)"></div>
+<div class="dot" onclick="slidedot(2)"></div>
+<div class="dot" onclick="slidedot(3)"></div>
+<div class="dot" onclick="slidedot(4)"></div>
+<div class="dot" onclick="slidedot(5)"></div>
+  </div>
+
+
+  <script>
+    let currentIndex = 0;
+    const totalimg = document.querySelectorAll('#img1').length;
+    console.log(totalimg)
+    // const slides = document.querySelector('#slider');
+    const dots = document.querySelector('.dot');
+
+    function slidedot(n){
+      showimage(n)
+    }
+    
+    function showimage(index) {
+      if (index < 0) {
+        currentIndex = totalimg - 1;
+        console.log(currentIndex)
+      }
+      else if (index >= totalimg) {
+        currentIndex = 0;
+        console.log(currentIndex)
+
+      }
+      else {
+        currentIndex = index;
+        console.log(currentIndex)
+      }
+
+      const sliden = -currentIndex * 100 + '%';
+      console.log(sliden)
+      // slides.style.transform = 'translateX(' + sliden + ')';
+      document.querySelector('#slider').style.marginLeft = sliden;
+      
+    }
+
+
+    function previous() {
+      showimage(currentIndex - 1);
+    }
+    function next() {
+      showimage(currentIndex + 1);
+    }
+
+  </script>
+
+
+
+
+</body>
+
+</html>
